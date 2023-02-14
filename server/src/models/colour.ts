@@ -1,4 +1,4 @@
-import { Colour } from "../interfaces/colour";
+import { IColour } from "../interfaces/colour";
 import { model, Schema } from "mongoose";
 
 /** Mongoose Schema for the colour */
@@ -12,4 +12,4 @@ const colourSchema: Schema = new Schema(
 	{ timestamps: true }
 );
 
-export default model<Colour>("Colour", colourSchema);
+export default model<IColour>("Colour", colourSchema);
