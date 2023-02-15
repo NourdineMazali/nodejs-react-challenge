@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
-	getColours,
+    getColours,
+    postColour
 } from "../controllers/colours";
 
 /**
@@ -8,5 +9,6 @@ import {
  */
 const coloursRouter = Router();
 coloursRouter.get("/colours", getColours);
+coloursRouter.post("/colours", postColour);
 
 export default coloursRouter;
