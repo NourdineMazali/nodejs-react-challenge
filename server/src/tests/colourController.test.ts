@@ -54,4 +54,16 @@ describe("/colours tests", () => {
       ],
     });
   });
+
+  it("should post colours", async () => {
+    const response = await request(app).post("/colours").send({
+        name: "new test",
+    });
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+        colour: expect.objectContaining({
+            name: "new test",
+        }),
+    });
+});
 });
