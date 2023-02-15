@@ -1,7 +1,8 @@
 import { Router } from "express";
 import {
     getColours,
-    postColour
+    postColour,
+    deleteColour
 } from "../controllers/colours";
 
 /**
@@ -10,5 +11,7 @@ import {
 const coloursRouter = Router();
 coloursRouter.get("/colours", getColours);
 coloursRouter.post("/colours", postColour);
+coloursRouter.post("/colours", postColour);
+coloursRouter.delete("/colours/:id", deleteColour);
 
 export default coloursRouter;

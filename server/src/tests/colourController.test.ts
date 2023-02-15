@@ -10,7 +10,7 @@ describe("/colours tests", () => {
   let mongod: MongoMemoryServer;
   let app: Application;
   let id: string;
-  let colour;
+  let colour: any;
 
   beforeAll(async () => {
     mongod = await MongoMemoryServer.create();
@@ -80,10 +80,19 @@ describe("/colours tests", () => {
 		const response = await request(app).delete(`/colours/${id}`);
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
-			item: expect.objectContaining({
+			colour: expect.objectContaining({
 				_id: id,
 				name: "test",
 			}),
+		});
+    });
+    
+    it("should return error on delete", async () => {
+		await colour.remove();
+		const response = await request(app).delete(`/colours/${id}`);
+		expect(response.status).toBe(401);
+		expect(response.body).toEqual({
+			message: "Colour not found",
 		});
 	});
 });

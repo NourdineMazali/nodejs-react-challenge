@@ -49,4 +49,31 @@ const postColour = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-export { getColours, postColour };
+/**
+ * Delete a colour
+ * @route DELETE /colours/:id
+ */
+const deleteColour = async (req: Request, res: Response): Promise<void> => {
+	try {
+		const {
+			params: { id },
+		} = req;
+		const deleteColour: IColour | null = await Colour.findById(id);
+		if (deleteColour) {
+			const deletedColour = await deleteColour.remove();
+			res.status(statusCodes.SUCCESS).json({
+				colour: deletedColour,
+			});
+		} else {
+			res.status(statusCodes.NOT_FOUND).json({
+				message: "Colour not found",
+			});
+		}
+	} catch (err) {
+		res.status(statusCodes.SERVER_ERROR).json({
+			message: "Internal Server error",
+		});
+	}
+};
+
+export { getColours, postColour, deleteColour };
