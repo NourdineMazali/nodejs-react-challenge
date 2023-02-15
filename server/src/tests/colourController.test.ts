@@ -55,7 +55,7 @@ describe("/colours tests", () => {
     });
   });
 
-  it("should post colours", async () => {
+    it("should post colours", async () => {
     const response = await request(app).post("/colours").send({
         name: "new test",
     });
@@ -65,5 +65,14 @@ describe("/colours tests", () => {
             name: "new test",
         }),
     });
-});
+    });
+
+    it("should return errors on post", async () => {
+        const response = await request(app).post("/colours").send({
+        });
+        expect(response.status).toBe(400);
+        expect(response.body).toEqual({
+            message: "Validation Error",
+        });
+    });
 });
