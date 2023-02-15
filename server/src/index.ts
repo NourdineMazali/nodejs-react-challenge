@@ -1,21 +1,30 @@
-import * as Koa from "koa";
-import * as Router from "@koa/router";
-import {uploadFile} from "./routes/upload-file";
-import {auth} from "./middleware/auth";
+import express, { Express } from "express";
+// import {auth} from "./middleware/auth";
+import coloursRouter from "./routes/colours";
+import dotenv from "dotenv";
+import cors from "cors";
+import mongoose from "mongoose";
 
-const PORT = 3000;
+const PORT: string | number = process.env.PORT || 3000;
+dotenv.config();
 
-const app = new Koa();
-
-const imageRouter = new Router();
+const app: Express = express();
 
 // Put other routes here
-imageRouter
-    .prefix("/images")
-    .post("/", uploadFile)
-
 
 app
-    .use(auth)
-    .use(imageRouter.routes())
-    .listen(PORT, () => console.info(`Listing on port ${PORT}`))
+    // .use(auth)
+    .use(cors())
+    .use(express.json())
+    .use(express.urlencoded())
+    .use(coloursRouter)
+    .use("*", (_, res) => res.status(404).json({ error: "Not Found" }));
+
+    mongoose
+        .connect(`mongodb://db:27017`)
+        .then(() =>
+            app.listen(PORT, () => console.log(`Server running on ${PORT}`))
+        )
+        .catch((error) => {
+            console.log(error);
+        });
