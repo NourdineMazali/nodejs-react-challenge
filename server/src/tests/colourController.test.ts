@@ -75,4 +75,15 @@ describe("/colours tests", () => {
             message: "Validation Error",
         });
     });
+
+    it("should delete colours", async () => {
+		const response = await request(app).delete(`/colours/${id}`);
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({
+			item: expect.objectContaining({
+				_id: id,
+				name: "test",
+			}),
+		});
+	});
 });
