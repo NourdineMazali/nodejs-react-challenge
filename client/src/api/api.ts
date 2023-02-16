@@ -1,10 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 
 const baseUrl: string = "http://localhost:4000";
-
+const axiosInstance = axios.create({
+    withCredentials: true, // this allows the cookies to be sent with the request
+  });
 export const getColours = async (): Promise<AxiosResponse<ApiDataType>> => {
 	try {
-		const colours: AxiosResponse<ApiDataType> = await axios.get(
+		const colours: AxiosResponse<ApiDataType> = await axiosInstance.get(
 			`${baseUrl}/colours`
 		);
 		return colours;
@@ -21,7 +23,7 @@ export const addColour = async (
 			name: data.name,
 		};
 
-		const saveColour: AxiosResponse<ApiDataType> = await axios.post(
+		const saveColour: AxiosResponse<ApiDataType> = await axiosInstance.post(
 			`${baseUrl}/colours`,
 			colour
 		);
@@ -36,7 +38,7 @@ export const deleteColour = async (
 	id: string
 ): Promise<AxiosResponse<ApiDataType>> => {
 	try {
-		const deleteColour: AxiosResponse<ApiDataType> = await axios.delete(
+		const deleteColour: AxiosResponse<ApiDataType> = await axiosInstance.delete(
 			`${baseUrl}/colours/${id}`
 		);
 		return deleteColour;

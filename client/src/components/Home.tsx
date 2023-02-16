@@ -1,45 +1,22 @@
-import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
-import { getColours } from "../api/api";
-import Colour from "./Colour";
+import { useContext, useEffect} from "react";
+import Colours from "./Colours";
+import Login from "./signin";
+import { UserContext } from "./Context";
+import { getCookie } from "../utils/cookies";
 
 const Home = () => {
-	const [colours, setColours] = useState<IColour[]>([]);
+    const { userContext, setUserContext } = useContext(UserContext);
 
-	const fetchColours = async (): Promise<void> => {
-		getColours()
-			.then(({ data: { colours } }: IColour[] | any) => setColours(colours))
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-
-	useEffect(() => {
-		fetchColours();
-	}, []);
+    useEffect(() => {
+      if (!userContext) {
+        setUserContext(getCookie("user_id"));
+      }
+    }, [userContext]);
 
 	return (
 		<>
-			<br></br>
-			<Table>
-				<thead>
-					<tr>
-						<th>Colour ID</th>
-						<th>Name</th>
-                        <th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{colours.map((colour) => {
-						return (
-							<Colour
-								_id={colour._id}
-								name={colour.name}
-							/>
-						);
-					})}
-				</tbody>
-			</Table>
+      {userContext && <Colours/> }
+      {!userContext && <Login/> }
 		</>
 	);
 };

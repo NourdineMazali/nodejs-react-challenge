@@ -23,6 +23,7 @@ const AddColour = () => {
 					<Form.Control
 						type="text"
 						defaultValue={colour.name}
+						required
 						onChange={(event) => {
 							colour.name = event.target.value;
 						}}

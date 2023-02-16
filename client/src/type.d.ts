@@ -5,8 +5,10 @@ interface IColour {
 	updatedAt?: string;
 }
 
-interface ItemProps {
-	coulour: IColour;
+interface IUser {
+    username: string,
+    email?: string,
+    password: string,
 }
 
 type ApiDataType = {
@@ -15,3 +17,8 @@ type ApiDataType = {
 	coulour: IColour;
 	coulours: IColour[];
 };
+
+interface IloginCred {
+    username: string;
+    password: string;
+  }
