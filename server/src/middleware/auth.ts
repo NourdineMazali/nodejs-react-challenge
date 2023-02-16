@@ -9,7 +9,10 @@ const verifyToken = (req: any, res: any, next: any) => {
         }
 
         let secret:string = process.env.JWT_SECRET as string;
+        
+        token = token.includes(';')? token.split(';')[0] : token
         token = JSON.parse(token)
+
         jwt.verify(token, secret, (err: any, decoded: any) => {
             console.log(err);
             if (err) {
