@@ -7,8 +7,8 @@ import { signin, signout, signup } from "../controllers/auth";
 const authRouter = express.Router();
 
 authRouter
-  .post("/signup", signup)
-  .post("/signin", signin)
-  .post("/signout", signout);
+  .post("/api/v1/auth/signup", signup)
+  .post("/api/v1/auth/signin", signin)
+  .post("/api/v1/auth/signout", signout);
 
 export default authRouter;

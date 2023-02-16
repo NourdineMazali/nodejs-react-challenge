@@ -22,14 +22,14 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 
     res.status(statusCodes.SUCCESS).send({ message: "User was registered successfully!" });
 
-	} catch (err) {
+	} catch (err: any) {
 		if (err instanceof mongoose.Error.ValidationError) {
 			res.status(statusCodes.BAD_REQUEST).json({
 				message: err.message,
 			});
 		} else {
 			res.status(statusCodes.SERVER_ERROR).json({
-				message: err.message,
+				message: err!.message ?? 'Internal Error',
 			});
 		}
 	}

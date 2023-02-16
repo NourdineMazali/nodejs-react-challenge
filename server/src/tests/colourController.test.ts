@@ -4,13 +4,21 @@ import Colour from "../models/colour";
 import request from "supertest";
 import express, { Application } from 'express';
 import cors from "cors";
-import coloursRouter from "../routes/colours";
+import {
+  getColours,
+  postColour,
+  deleteColour
+} from "../controllers/colours";
+
+const coloursRouter = express.Router();
 
 describe("/colours tests", () => {
   let mongod: MongoMemoryServer;
   let app: Application;
   let id: string;
   let colour: any;
+
+  
 
   beforeAll(async () => {
     mongod = await MongoMemoryServer.create();
@@ -21,7 +29,6 @@ describe("/colours tests", () => {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
-    app.use(coloursRouter);
   });
 
   afterAll(async () => {
@@ -42,6 +49,8 @@ describe("/colours tests", () => {
   });
 
   it("should get colours", async () => {
+    coloursRouter.get("/colours", getColours);
+    app.use(coloursRouter)
     const response = await request(app).get("/colours");
 
     expect(response.status).toBe(200);
@@ -56,19 +65,23 @@ describe("/colours tests", () => {
   });
 
     it("should post colours", async () => {
-    const response = await request(app).post("/colours").send({
-        name: "new test",
-    });
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-        colour: expect.objectContaining({
-            name: "new test",
-        }),
-    });
+      coloursRouter.post("/colours", postColour);
+      app.use(coloursRouter)
+      const response = await request(app).post("/colours").send({
+          name: "new test",
+      });
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({
+          colour: expect.objectContaining({
+              name: "new test",
+          }),
+      });
     });
 
     it("should return errors on post", async () => {
-        const response = await request(app).post("/colours").send({
+      coloursRouter.post("/colours", postColour);
+      app.use(coloursRouter)  
+      const response = await request(app).post("/colours").send({
         });
         expect(response.status).toBe(400);
         expect(response.body).toEqual({
@@ -77,6 +90,8 @@ describe("/colours tests", () => {
     });
 
     it("should delete colours", async () => {
+    coloursRouter.delete("/colours/:id", deleteColour);
+    app.use(coloursRouter)  
 		const response = await request(app).delete(`/colours/${id}`);
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
@@ -88,6 +103,8 @@ describe("/colours tests", () => {
     });
     
     it("should return error on delete", async () => {
+    coloursRouter.delete("/colours/:id", deleteColour);
+    app.use(coloursRouter)  
 		await colour.remove();
 		const response = await request(app).delete(`/colours/${id}`);
 		expect(response.status).toBe(401);
