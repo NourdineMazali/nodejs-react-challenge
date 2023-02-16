@@ -37,6 +37,8 @@ const Register = () => {
         username: "",
         password: "",
       });
+      navigate("/login");
+
     } catch (error: any) {
       console.log(error.response.data.data.code);
       if (error.response.data.data.code === "UsernameExistsException") {
