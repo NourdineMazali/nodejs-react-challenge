@@ -15,7 +15,7 @@ const app: Express = express();
 
 app
     .use(cors({
-        origin: 'http://localhost:3001',
+        origin: 'http://localhost:3000',
         credentials: true
     }))
     .use(express.json())
@@ -25,7 +25,7 @@ app
     .use("*", (_, res) => res.status(404).json({ error: "Not Found" }));
 
     mongoose
-        .connect(`mongodb://localhost:27017`)
+        .connect(`mongodb://db:27017`)
         .then(() =>
             app.listen(PORT, () => console.log(`Server running on ${PORT}`))
         )
