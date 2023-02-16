@@ -11,13 +11,11 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 
 	try {
 		const body = req.body as Pick<IUser, "username" | "email" | "password">;
-    if (!body.username || !body.password || !body.email) {
-      throw new Error("Please enter all fields");
-    }
+    
 		const user: IUser = new User({
 			username: body.username,
       email: body.email,
-      password: bcrypt.hashSync(body.password, 8),
+      password: body.password ? bcrypt.hashSync(body.password, 8) : null,
 		});
 
 		await user.save();
@@ -31,7 +29,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 			});
 		} else {
 			res.status(statusCodes.SERVER_ERROR).json({
-				message: "Internal server Error",
+				message: err.message,
 			});
 		}
 	}
