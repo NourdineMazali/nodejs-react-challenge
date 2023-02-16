@@ -1,12 +1,23 @@
-const mongoose = require("mongoose");
+import { IUser } from "../interfaces/user";
+import { model, Schema } from "mongoose";
 
-const User = mongoose.model(
-  "Users",
-  new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-  })
+/** Mongoose Schema for the colour */
+const userSchema: Schema = new Schema(
+	{
+        username: {
+			type: String,
+			required: true,
+        },
+        email: {
+			type: String,
+			required: true,
+        },
+        password: {
+			type: String,
+			required: true,
+        },
+	},
+	{ timestamps: true }
 );
 
-module.exports = User;
+export default model<IUser>("User", userSchema);
