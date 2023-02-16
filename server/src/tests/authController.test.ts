@@ -39,7 +39,7 @@ describe("/auth tests", () => {
   beforeEach(async () => {
     user = new User({
       username: "test",
-      password:bcrypt.hashSync("test-password", 8) ,
+      password: bcrypt.hashSync("test-password", 8),
       email: "test-@test.com",
     });
     await user.save();
@@ -54,26 +54,26 @@ describe("/auth tests", () => {
   it("should signup", async () => {
 
     const response = await request(app).post("/api/v1/auth/signup").send({
-        username: "new test",
-        password: "new password",
-        email: "email@test.com",
+      username: "new test",
+      password: "new password",
+      email: "email@test.com",
     });
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
-          message: "User was registered successfully!",
+      message: "User was registered successfully!",
     });
   });
 
   it("should signin", async () => {
-     const response = await request(app).post("/api/v1/auth/signin").send({
+    const response = await request(app).post("/api/v1/auth/signin").send({
       username: "test",
       password: "test-password",
-      });
+    });
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject({
       email: "test-@test.com",
-      id : id,
+      id: id,
       username: "test"
-});
+    });
   });
 });
