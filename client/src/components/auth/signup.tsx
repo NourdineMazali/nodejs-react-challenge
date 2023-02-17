@@ -25,22 +25,20 @@ const Register = () => {
     event.preventDefault();
 
     try {
-      await axios.post("http://localhost:4000/api/v1/auth/signup", registerCred).catch(err => {
+      await axios.post("http://localhost:4000/api/v1/auth/signup", registerCred).then(res => {
+        setRegisterCred({
+          email: "",
+          username: "",
+          password: "",
+        });
+        navigate("/login");
+      })
+      .catch(err => {
         const { response } = err;
         setStatus(response!.data!.message);
-        console.log(response!.data!.message)
       });
-
-      console.log("registration successful");
-      setRegisterCred({
-        email: "",
-        username: "",
-        password: "",
-      });
-      navigate("/login");
 
     } catch (error: any) {
-      console.log(error.response.data.data.code);
       if (error.response.data.data.code === "UsernameExistsException") {
         setStatus("This username is already in use");
       }
