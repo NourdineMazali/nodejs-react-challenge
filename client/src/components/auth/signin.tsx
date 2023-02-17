@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "./Context";
+import { UserContext } from "../Context";
 
 const Login = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, ButtonGroup, Form, Modal } from "react-bootstrap";
-import { deleteColour } from "../api/api";
+import { deleteColour } from "../../api/api";
 type ColourProps = {
 	_id: string;
 	name: string;

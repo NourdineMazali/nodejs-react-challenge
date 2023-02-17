@@ -1,6 +1,6 @@
 import { useContext, useEffect} from "react";
-import Colours from "./Colours";
-import Login from "./signin";
+import Colours from "./colour/Colours";
+import Login from "./auth/signin";
 import { UserContext } from "./Context";
 import { getCookie } from "../utils/cookies";
 

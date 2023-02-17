@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap";
-import { addColour } from "../api/api";
+import { addColour } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 const AddColour = () => {

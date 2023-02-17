@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { getColours } from "../api/api";
+import { getColours } from "../../api/api";
 import Colour from "./Colour";
 
 const Colours = () => {

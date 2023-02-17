@@ -6,9 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomNav from "./components/CustomNav";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AddColour from "./components/AddColour";
-import Login from "./components/signin";
-import Register from "./components/signup";
+import AddColour from "./components/colour/AddColour";
+import Login from "./components/auth/signin";
+import Register from "./components/auth/signup";
 import { UserContext } from "./components/Context";
 import { getCookie } from "./utils/cookies";
 
