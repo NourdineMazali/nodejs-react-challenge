@@ -123,7 +123,7 @@ Now you have all the prerequesites to run the application in development envirom
 In the root folder:
 1. Add a ```.env``` file similar to above
 2. ```docker-compose build```
-3. ```docker-compose up```
+3. ```docker-compose up -d```
 4. Go to ```localhost:3000```
 
 ## Alternatively running the application locally
