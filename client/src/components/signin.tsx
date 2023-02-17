@@ -57,7 +57,7 @@ const Login = () => {
             <h3>Login</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Username or Email</Form.Label>
+                    <Form.Label>Username</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Enter Username or Email"

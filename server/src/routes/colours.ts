@@ -10,9 +10,9 @@ import  authJwt from "../middleware/auth";
  * Define various routes for the colours controller
  */
 const coloursRouter = Router();
-coloursRouter.get("/colours", authJwt.verifyToken, getColours);
-coloursRouter.post("/colours", authJwt.verifyToken, postColour);
-coloursRouter.post("/colours", authJwt.verifyToken, postColour);
-coloursRouter.delete("/colours/:id", authJwt.verifyToken, deleteColour);
+coloursRouter.get("/api/v1/colours", authJwt.verifyToken, getColours);
+coloursRouter.post("/api/v1/colours", authJwt.verifyToken, postColour);
+coloursRouter.post("/api/v1/colours", authJwt.verifyToken, postColour);
+coloursRouter.delete("/api/v1/colours/:id", authJwt.verifyToken, deleteColour);
 
 export default coloursRouter;

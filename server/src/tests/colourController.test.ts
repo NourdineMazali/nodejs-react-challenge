@@ -49,7 +49,7 @@ describe("/colours tests", () => {
   });
 
   it("should get colours", async () => {
-    coloursRouter.get("/colours", getColours);
+    coloursRouter.get("/api/v1/colours", getColours);
     app.use(coloursRouter)
     const response = await request(app).get("/colours");
 
@@ -65,7 +65,7 @@ describe("/colours tests", () => {
   });
 
     it("should post colours", async () => {
-      coloursRouter.post("/colours", postColour);
+      coloursRouter.post("/api/v1/colours", postColour);
       app.use(coloursRouter)
       const response = await request(app).post("/colours").send({
           name: "new test",
@@ -79,7 +79,7 @@ describe("/colours tests", () => {
     });
 
     it("should return errors on post", async () => {
-      coloursRouter.post("/colours", postColour);
+      coloursRouter.post("/api/v1/colours", postColour);
       app.use(coloursRouter)  
       const response = await request(app).post("/colours").send({
         });
@@ -90,7 +90,7 @@ describe("/colours tests", () => {
     });
 
     it("should delete colours", async () => {
-    coloursRouter.delete("/colours/:id", deleteColour);
+    coloursRouter.delete("/api/v1/colours/:id", deleteColour);
     app.use(coloursRouter)  
 		const response = await request(app).delete(`/colours/${id}`);
 		expect(response.status).toBe(200);
@@ -103,7 +103,7 @@ describe("/colours tests", () => {
     });
     
     it("should return error on delete", async () => {
-    coloursRouter.delete("/colours/:id", deleteColour);
+    coloursRouter.delete("/api/v1/colours/:id", deleteColour);
     app.use(coloursRouter)  
 		await colour.remove();
 		const response = await request(app).delete(`/colours/${id}`);

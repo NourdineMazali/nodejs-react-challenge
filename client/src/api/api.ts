@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const baseUrl: string = "http://localhost:4000";
+const baseUrl: string = "http://localhost:4000/api/v1/";
 const axiosInstance = axios.create({
     withCredentials: true, // this allows the cookies to be sent with the request
   });
