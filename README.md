@@ -1,74 +1,153 @@
-# Overview
-Thanks for your interest in annalise.ai. 😀
+# Annalise.ai challenge
 
-This exercise has been designed to demonstrate your skills and experience, and to provide talking points for your Round 
-2 interview. 
+Hi! This repository contains my submission to the Annalise fullstack challenge, built with the MERN stack with typescript.  
+**_All the relevent backend codes are stored in [`server/src`]**
 
-The goal of this exercise is to provide a very simple full stack app
+The project contains basic CRUD functionalities:
 
-From a technical perspective, the solution should
- - Use TypeScript or Python (with type annotations)
- - On the frontend, use React with Typescript
- - Persist data to a database
- - Provide unit tests
- - Include a bare minimum authentication solution
+-   Create Inventory Colour
+-   Delete colours
+-   View a list of colours
 
-Features
- - Route to get names and ids of 'widgets' (see below)
- - Route to delete an widget
- - UI that provides a list of widgets, and allows the user to delete a widget
+## Technologies used
+- React/Typescript
+- Express.js
+- Nodejs
+- MongoDB
+- Docker
 
-The solution should include a README with instructions, and some justification of technology choices 
-(i.e. replace this file)
+## Architecture
+├─client               # frontend folder
+│  ├─src               # frontend src
+│  │  ├─api
+│  │  ├─styles
+│  │  ├─utils
+│  │  ├─components     # app components
+|  |  |-index.tsx
+|
+└─server               # server folder
+   └─src               # server src
+      ├─api            # server api list
+      │  ├─auth        # completely token-based authentication
+      │  ├─thing
+      │  └─user
+      ├─controllers    # Controllers
+      ├     ├─auth
+      │     └─colours
+      ├─interfaces    # interfaces
+      ├     ├─user
+      │     └─colour
+      ├─models    # models
+      ├     ├─user
+      │     └─colour
+      ├─middleware    # middleware
+      ├     ├─auth
+      ├─config         # server configurations
+      │  ├─auth.config # default server port, mongo uri, etc settings
+      │  ├─db          # security settins
+      indes.ts        # main file after entry
+      └─routes         # router
+            ├─auth
+      │     └─colours
 
-We've provided an initial TypeScript / koa / react starter pack with react, koa, eslint, jest etc. and a suggested 
-file structure to get you going quickly.
+## Prerequisites
 
-**However, you're under no obligation to use this.** If you wish, you can use next.js or similar instead.
+- MongoDB
+- Express 
+- Vue
+- Node
+- Bootstrap
+- React
+- Docker
 
-## Your time
+## Installation
 
-Your time is valuable. We've tried to balance our need to find committed, talented candidates with respect for your time.
-We don't expect you to spend more than about 4 hours on this exercise.
+#### Backend
 
-Here are some corners you can cut.
+1. Clone the repository.
 
-### 'Widgets'?
- - i.e. just a list of strings, each with an id
- - Can be names of food, colours etc., just make up the data yourself
- - e.g. (blue, 1), (orange, 2)
- - Store these in a table in the database (by hand, or by script if you prefer)
+```
+ git clone http://annaliseai-mlgzln@git.codesubmit.io/annaliseai/full-stack-challenge-dzaiig
+```
 
-### Deployment & dev-ops
- - Not needed. We'll talk about possible approaches in the interview 
- - Everything can be run locally i.e. cloud deployable, not cloud deployed
+2. In the root directory, go to the backend folder.
 
-### Styling & CSS
- - We're just looking for a *demonstration of approach*, not beautifully styled components
- - i.e. use whatever tooling you prefer (styled components, scss etc.)
+```
+cd server
+```
 
-### Testing
- - Just unit tests - no need for integration & functional tests, unless you'd prefer those instead
+3. Install server dependencies.
 
-### Authentication
- - Use middleware etc. to support the absolute bare minimum
- - (i.e. no need to store user tokens in the db etc.)
- - Looking for more of a proof of concept for discussion
+```
+npm install
+```
 
-### Database
- - Use e.g. mysql via docker compose
- - Or if you'd prefer, a cloud based database
- - No need for indices or optimisation of any kind
- - No need for automated db deployment, migrations etc
+4. Add `.env` file, then copy and edit the below variables into the env file to spin up the database.
 
-### File storage
- - Local file storage is ok, **however**
- - Try to abstract the storage, so it could, potentially, be changed to support AWS S3 or similar
+```
+JWT_SECRET=<YOUR JWT SECRET>
+PORT=4000
+```
 
-# How will the exercise be evaluated?
+#### Frontend
 
-Apart from meeting the above, we'll be looking at 
- - How have you organised the routes in a RESTful way?
- - Is the solution robust to bad inputs?
- - Limits e.g. on file sizes
- - How easy would it be for a colleague to pick up your solution and run it, and work on it, without assistance?
+1. In the root directory, go to the frontend folder.
+
+```
+cd client
+```
+
+2. Install client dependencies.
+
+```
+npm install
+```
+
+3. Update the `baseUrl` variable in `/api/api.ts` to your desired `localhost` url, for example:
+
+```typescript
+const baseUrl: string = "http://localhost:4000";
+```
+
+Now you have all the prerequesites to run the application in development enviroment.
+
+
+## Running with docker
+In the root folder:
+1. Add a ```.env``` file similar to above
+2. ```docker-compose build```
+3. ```docker-compose up```
+4. Go to ```localhost:3000```
+
+## Alternatively running the application locally
+
+1. In the server folder, start the server.
+
+```
+npm start
+```
+2. Install client dependencies.
+
+```
+npm install
+```
+
+3. In the frontend folder, start the React client.
+
+```
+npm start
+```
+
+3. Go to the `localhost` you previously defined on the above step 3 to use the application.
+## Run backend tests
+
+In the server folder, run:
+
+```
+npm test
+```
+##To-do list:
+
+Update colour
+Add Integration tests to Frontend
+Add Middleware Mocking using sinon and Chai packages
