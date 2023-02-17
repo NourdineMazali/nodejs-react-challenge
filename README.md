@@ -157,4 +157,8 @@ npm test
 
 Add Integration tests to Frontend
 
-Add Middleware Mocking using Sinon and Chai packages
+Move all Server domains paths to constant file
+
+
+Add auth Middleware Mock
+
