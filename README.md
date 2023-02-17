@@ -5,7 +5,7 @@ Hi! This repository contains my submission to the Annalise fullstack challenge, 
 
 The project contains basic CRUD functionalities:
 
--   Create Inventory Colour
+-   Create new colour
 -   Delete colours
 -   View a list of colours
 
@@ -17,6 +17,7 @@ The project contains basic CRUD functionalities:
 - Docker
 
 ## Architecture
+
 ├─client               # frontend folder
 │  ├─src               # frontend src
 │  │  ├─api
@@ -49,6 +50,9 @@ The project contains basic CRUD functionalities:
       └─routes         # router
             ├─auth
       │     └─colours
+
+
+      
 
 ## Prerequisites
 
