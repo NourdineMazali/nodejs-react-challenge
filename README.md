@@ -1,13 +1,14 @@
 # Annalise.ai challenge
 
 Hi! This repository contains my submission to the Annalise fullstack challenge, built with the MERN stack with typescript.  
-**_All the relevent backend codes are stored in [`server/src`]**
 
 The project contains basic CRUD functionalities:
-
 -   Create new colour
 -   Delete colours
 -   View a list of colours
+-   Signup
+-   SignIn
+-   SignOut
 
 ## Technologies used
 - React/Typescript
@@ -16,40 +17,40 @@ The project contains basic CRUD functionalities:
 - MongoDB
 - Docker
 
-## Architecture
+### Architecture
 
-├─client               # frontend folder
-│  ├─src               # frontend src
-│  │  ├─api
-│  │  ├─styles
-│  │  ├─utils
-│  │  ├─components     # app components
-|  |  |-index.tsx
-|
-└─server               # server folder
-   └─src               # server src
-      ├─api            # server api list
-      │  ├─auth        # completely token-based authentication
-      │  ├─thing
-      │  └─user
-      ├─controllers    # Controllers
-      ├     ├─auth
-      │     └─colours
-      ├─interfaces    # interfaces
-      ├     ├─user
-      │     └─colour
-      ├─models    # models
-      ├     ├─user
-      │     └─colour
-      ├─middleware    # middleware
-      ├     ├─auth
-      ├─config         # server configurations
-      │  ├─auth.config # default server port, mongo uri, etc settings
-      │  ├─db          # security settins
-      indes.ts        # main file after entry
-      └─routes         # router
-            ├─auth
-      │     └─colours
+      ├─client               # frontend folder
+      │  ├─src               # frontend src
+      │  │  ├─api
+      │  │  ├─styles
+      │  │  ├─utils
+      │  │  ├─components     # app components
+      |  |  |-index.tsx
+      |
+      └─server               # server folder
+         └─src               # server src
+            ├─api            # server api list
+            │  ├─auth        # completely token-based authentication
+            │  ├─thing
+            │  └─user
+            ├─controllers    # Controllers
+            ├     ├─auth
+            │     └─colours
+            ├─interfaces    # interfaces
+            ├     ├─user
+            │     └─colour
+            ├─models    # models
+            ├     ├─user
+            │     └─colour
+            ├─middleware    # middleware
+            ├     ├─auth
+            ├─config         # server configurations
+            │  ├─auth.config # default server port, mongo uri, etc settings
+            │  ├─db          # security settins
+            indes.ts        # main file after entry
+            └─routes         # router
+                  ├─auth
+            │     └─colours
 
 
       
@@ -87,6 +88,8 @@ npm install
 ```
 
 4. Add `.env` file, then copy and edit the below variables into the env file to spin up the database.
+
+PS: .env for server file included in the repo to streamline running the app, normally the file will not be included
 
 ```
 JWT_SECRET=<YOUR JWT SECRET>
@@ -150,8 +153,8 @@ In the server folder, run:
 ```
 npm test
 ```
-##To-do list:
+## To-do list:
 
-Update colour
 Add Integration tests to Frontend
-Add Middleware Mocking using sinon and Chai packages
+
+Add Middleware Mocking using Sinon and Chai packages
