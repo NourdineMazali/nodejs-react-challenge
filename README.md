@@ -72,7 +72,7 @@ The project contains basic CRUD functionalities:
 1. Clone the repository.
 
 ```
- git clone http://annaliseai-mlgzln@git.codesubmit.io/annaliseai/full-stack-challenge-dzaiig
+ git clone https://github.com/NourdineMazali/nodejs-react-challenge.git
 ```
 
 2. In the root directory, go to the backend folder.
